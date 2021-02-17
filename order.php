@@ -5,14 +5,16 @@
   * example: $apiClient->addOrder(array_merge($_POST,$queryString),true);
   *
   */
- $pixel = trim($_GET["fb_pixel"]);;
+ $pixel = trim($_GET["fb_pixel"]);
+ $gp1 = trim($_GET["gp1"]);
+ $gp2 = trim($_GET["gp2"]);
 
  //Add order
  $apiClient = new CtrApiClient();
  parse_str($_SERVER['QUERY_STRING'],$queryString);
  $response = $apiClient->addOrder(array_merge($_POST,$queryString),false);
  if((int)$response['result']['success']){
-     header("Location: success.php?fb_pixel=".$pixel);
+     header("Location: success.php?fb_pixel=".$pixel."&gp1=".$gp1."&gp2=".$gp2);
  };
 ?>
 
@@ -348,5 +350,4 @@ $phonet = trim($_POST["phone"]);
     $out = curl_exec($curl);
     curl_close($curl);
 }
-
 
